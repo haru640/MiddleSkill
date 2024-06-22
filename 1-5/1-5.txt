@@ -1,0 +1,99 @@
+⚫️課題1−5
+
+
+【事前準備】
+・WindowsPCの方はLinuxコマンドが利用できないためGitbushをダウンロードして問題に回答してください（参考記事２参照）
+
+
+※問題文の回答欄には実行したコマンドのみ一番最後にはエビデンススクショを貼り付けてください
+※今回、Gitにプッシュする際は回答をPDF形式で格納しプッシュしてください。
+ 例）1-5/1-5.pdf
+
+
+ここの問題に関して、金子が最大効率17行（ターミナル画面上の実行行数）で実行できたのでそれ以上少ない行数で問題を解けた人は先生と呼びます。
+※１７行以上でもできていれば完了とします！！
+
+
+①「kaneko」ディレクトリを作成してください
+
+Mkdir Kaneko
+
+
+②kanekoディレクトリに移動してください
+
+Cd Kaneko
+
+、
+③ kanekoディレクトリの中に「katsumata」「minami」「furuyama」フォルダを作成してください。
+
+mkdir katsumata minami furuyama
+
+
+④katsumataディレクトリの中に「murano.txt」「sasaki.txt」ファイル作成してください。
+
+touch katsumata/murano.txt 
+touch katsumata/sasaki.txt
+
+⑤katsumataディレクトリの中身を表示してください。
+（「murano.txt」と「sasaki.txt」が表示される）
+
+ls katsumata
+murano.txt	sasaki.txt
+
+
+⑥「katsumata」フォルダの「murano.txt」「sasaki.txt」ファイルを「minami」フォルダにコピーしてください。
+
+cp katsumata/murano.txt minami/
+cp katsumata/sasaki.txt minami/
+
+
+
+⑦「minami」フォルダの「murano.txt」ファイルを削除してください。
+
+Rm minami/murano.txt
+
+
+⑧「minami」フォルダの「sasaki.txt」を「furuyama」フォルダに移動してください。
+
+Mv minami/sasaki.txt furuyama/
+
+⑨「minami」フォルダを削除してください。（中身にデータが入っていないフォルダ）
+
+rm -r minami
+
+
+⑩「furuyama」フォルダの「sasaki.txt」の更新日付を変更してください。
+（タイムスタンプ）
+touch furuyama/sasaki.txt
+
+
+⑪「furuyama」フォルダの「sasaki.txt」を開いてくだい。（エディタの起動）
+
+Ls furuyama/sasaki.txt
+
+
+⑫エディタの起動後に入力モードに切り替え「hello world」と入力し保存して終了してください。
+
+nano furuyama/sasaki.txt
+hello world
+Ctrl + O
+Ctrl + X
+
+⑬「furuyama」フォルダの「sasaki」ファイルを開いて「Hello world」が保存されていることを確認してください。
+cat furuyama/sasaki.txt
+
+
+⑭「katsumata」ディレクトリで「murano.txt」ファイルを検索してください。
+
+find katsumata -type f -name "murano.txt"
+
+
+
+⑮「katsumata」ディレクトリで現在アクセス（滞在）してるディレクトリを表示して下さい。
+ls katsumata
+
+
+
+エビデンス写真↓
+
+/Users/haru/Desktop/スクリーンショット 2024-06-22 9.59.50.png
