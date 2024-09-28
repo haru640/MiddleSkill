@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>新規注文登録</title>
+    <link rel="stylesheet" type="text/css" href="style.css"> <!-- CSSのリンク -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<h1>新規注文登録</h1>
+
+<form action="#" th:action="@{/order_info/add}" th:object="${order}" method="post">
+    <div class="form-group">
+        <label for="purchaser">購入者:</label>
+        <input id="purchaser" type="text" th:field="*{purchaser}" required/>
+    </div>
+
+    <div class="form-group">
+        <label for="productId">商品ID:</label>
+        <input id="productId" type="number" th:field="*{product.productId}" required/> <!-- 修正 -->
+    </div>
+
+    <button type="submit">新規登録</button>
+</form>
+
+<a href="/order_info/list">戻る</a>
+
+</body>
+</html>

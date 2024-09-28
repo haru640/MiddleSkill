@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>商品詳細</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .product-detail {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+        }
+        .product-image {
+            max-width: 100%;
+            height: auto;
+        }
+        h1 {
+            color: #333;
+        }
+        .price {
+            color: #E91E63;
+            font-size: 24px;
+        }
+        .description {
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="product-detail">
+    <img th:src="@{${product.imageUrl}}" alt="商品画像" class="product-image"/>
+    <h1 th:text="${product.name}">商品名</h1>
+    <p class="price" th:text="${product.price} + '円'">価格</p>
+    <p class="description" th:text="${product.description}">商品説明</p>
+    
+    <form action="#" th:action="@{/cart/add}" method="post">
+        <input type="hidden" th:name="productId" th:value="${product.id}"/>
+        <button type="submit">カートに追加</button>
+    </form>
+</div>
+
+<a href="/product/list">商品一覧に戻る</a>
+
+</body>
+</html>
