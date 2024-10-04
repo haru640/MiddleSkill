@@ -1,35 +1,67 @@
 package com.example.mail_order.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
-@Table(name = "order_info")
+@Table(name = "order_info") // データベースのテーブル名
 public class OrderInfoEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @NotNull(message = "名前は必須です。")
+    private String name;
+
+    @NotNull
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate deliveryDate;
+
+
+    private String address;
     private Integer orderId;
 
-    @ManyToOne
-    @JoinColumn(name = "purchaser_id")
-    private PurchaserEntity purchaser;
+    // ゲッターとセッター
+    public Integer getId() {
+    	return id;
+    }
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private ProductEntity product;
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-    @Temporal(TemporalType.TIMESTAMP) // 日付のタイプを指定
-    private Date orderDate; // orderDateフィールドを追加
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDate getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(LocalDate deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public Integer getOrderId() {
         return orderId;
@@ -38,30 +70,4 @@ public class OrderInfoEntity {
     public void setOrderId(Integer orderId) {
         this.orderId = orderId;
     }
-
-    public PurchaserEntity getPurchaser() {
-        return purchaser;
-    }
-
-    public void setPurchaser(PurchaserEntity purchaser) {
-        this.purchaser = purchaser;
-    }
-
-    public ProductEntity getProduct() {
-        return product;
-    }
-
-    public void setProduct(ProductEntity product) {
-        this.product = product;
-    }
-
-    public Date getOrderDate() { // 正しいゲッターの実装
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) { // 正しいセッターの実装
-        this.orderDate = orderDate;
-    }
 }
-
-

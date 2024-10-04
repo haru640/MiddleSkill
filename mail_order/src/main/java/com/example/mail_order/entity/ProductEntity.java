@@ -1,41 +1,36 @@
 package com.example.mail_order.entity;
 
-import java.math.BigDecimal;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "product")
 public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productId; // productIdに戻します
+    private Integer id;
 
-    @Column(nullable = false)
-    private BigDecimal price;
+    @NotNull(message = "商品名は必須です。")
+    @Size(min = 1, max = 100, message = "商品名は1文字以上100文字以内で入力してください。")
+    private String name;
 
-    // Getter for productId
-    public Long getProductId() {
-        return productId;
+    // ゲッターとセッター
+    public Integer getId() {
+        return id;
     }
 
-    // Setter for productId
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    // Getter for price
-    public BigDecimal getPrice() {
-        return price;
+    public String getName() {
+        return name;
     }
 
-    // Setter for price
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setName(String name) {
+        this.name = name;
     }
 }

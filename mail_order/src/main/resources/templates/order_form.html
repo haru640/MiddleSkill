@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>注文フォーム</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="date"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .btn-wide {
+           padding: 10px 15px;
+           border-radius: 5px;
+           width: 100%; /* 幅を100%に設定 */
+           display: block; /* ボタンをブロック要素に */
+           text-align: center; /* テキストを中央に配置 */
+           margin-top: 10px; /* 上部にマージンを追加 */
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .btn-cancel {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .btn-cancel:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <h1 th:text="${order.id != null ? '注文編集' : '新規注文'}"></h1>
+    <form th:action="@{/orders}" th:object="${order}" method="post" novalidate>
+        <div th:if="${#fields.hasErrors('name')}" class="error" th:errors="*{name}"></div>
+        <div th:if="${#fields.hasErrors('deliveryDate')}" class="error" th:errors="*{deliveryDate}"></div>
+
+        <div>
+            <label for="name">名前<span style="color: red;"> *</span>:</label>
+            <input type="text" id="name" th:field="*{name}" required />
+            <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        </div>
+        <div>
+            <label for="deliveryDate">配送日:</label>
+            <input type="date" id="deliveryDate" th:field="*{deliveryDate}" th:attr="min=${#dates.format(currentDate, 'yyyy-MM-dd')}" required/>
+        </div>
+        <div>
+            <label for="address">住所:</label>
+            <input type="text" id="address" th:field="*{address}" />
+        </div>
+        <div>
+            <label for="orderId">注文ID:</label>
+            <input type="number" id="orderId" th:field="*{orderId}" required />
+        </div>
+        <button type="submit" class="btn-wide btn-save">保存</button>
+        <a th:href="@{/orders}" class="btn-wide btn-cancel">キャンセル</a>
+    </form>
+</body>
+</html>

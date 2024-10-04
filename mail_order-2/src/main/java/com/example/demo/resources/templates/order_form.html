@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>注文フォーム</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <h1 th:text="${order.id} != null ? '注文編集' : '新規注文'}"></h1>
+    <form th:action="@{/orders}" th:object="${order}" method="post">
+        <div>
+            <label for="name">名前:</label>
+            <input type="text" id="name" th:field="*{name}" required />
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        </div>
+        <div>
+            <label for="deliveryDate">配送日:</label>
+            <input type="date" id="deliveryDate" th:field="*{deliveryDate}" th:attr="min=${#dates.format(new java.util.Date(), 'yyyy-MM-dd')}" />
+        </div>
+        <div>
+            <label for="address">住所:</label>
+            <input type="text" id="address" th:field="*{address}" />
+        </div>
+        <div>
+            <label for="orderId">注文ID:</label>
+            <input type="number" id="orderId" th:field="*{orderId}" />
+        </div>
+        <button type="submit" class="btn-save">保存</button>
+        <a href="/orders" class="btn-cancel">キャンセル</a>
+    </form>
+</body>
+</html>

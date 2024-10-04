@@ -1,12 +1,12 @@
 package com.example.mail_order.service;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.mail_order.entity.OrderInfoEntity;
 import com.example.mail_order.repository.OrderInfoRepository;
@@ -16,23 +16,40 @@ public class OrderInfoService {
     @Autowired
     private OrderInfoRepository orderInfoRepository;
 
-    public List<OrderInfoEntity> findAll() {
+    public List<OrderInfoEntity> getAllOrders() {
         return orderInfoRepository.findAll();
     }
-
-    public OrderInfoEntity save(OrderInfoEntity orderInfo) {
-        orderInfo.setOrderDate(new Date()); 
-        return orderInfoRepository.save(orderInfo);
+    @Transactional
+    public void saveOrder(OrderInfoEntity order) {
+        if (order.getId() != null) {
+            System.out.println("Updating order with ID: " + order.getId());
+            orderInfoRepository.save(order);
+        } else {
+            System.out.println("Creating new order");
+            orderInfoRepository.save(order);
+        }
     }
 
-    public Map<String, Date[]> calculateOrderDates(List<OrderInfoEntity> orders) {
-        Map<String, Date[]> orderDateMap = new HashMap<>();
-        Date[] dates = new Date[orders.size()];
 
-        for (int i = 0; i < orders.size(); i++) {
-            dates[i] = orders.get(i).getOrderDate();
+    public void deleteOrder(Integer id) {
+        if (orderInfoRepository.existsById(id)) {
+            orderInfoRepository.deleteById(id);
+            // ログ追加
+            System.out.println("Order with ID " + id + " deleted.");
+        } else {
+            // エラーハンドリング
+            throw new IllegalArgumentException("Order not found with ID: " + id);
         }
-        orderDateMap.put("orderDates", dates);
-        return orderDateMap;
+    }
+
+    @Transactional
+    public Map<String, Integer> getProductCountByCategory() {
+        Map<String, Integer> productCount = new HashMap<>();
+        // 実際のデータ取得ロジックを実装
+        return productCount;
+    }
+
+    public OrderInfoEntity getOrderById(Integer id) {
+        return orderInfoRepository.findById(id).orElse(null);
     }
 }
