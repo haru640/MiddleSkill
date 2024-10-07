@@ -1,51 +1,28 @@
 ⚫️課題3-12
 テーブル定義
 
+Table "public.order_info"
+    Column     |          Type          | Collation | Nullable |                Default                 
+---------------+------------------------+-----------+----------+----------------------------------------
+ id            | integer                |           | not null | nextval('order_info_id_seq'::regclass)
+ name          | character varying(255) |           |          | 
+ delivery_date | character varying      |           |          | 
+ address       | character varying(255) |           |          | 
+ order_id      | integer                |           |          | 
+Indexes:
+    "order_info_pkey" PRIMARY KEY, btree (id)
 
-CREATE TABLE purchaser (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL
-);
+Table "public.product"
+ Column |       Type        | Collation | Nullable | Default 
+--------+-------------------+-----------+----------+---------
+ id     | integer           |           |          | 
+ name   | charac
 
-CREATE TABLE product (
-    product_id SERIAL PRIMARY KEY,
-    price DECIMAL(10, 2) NOT NULL
-);
-
-CREATE TABLE order_info (
-    order_id SERIAL PRIMARY KEY,
-    purchaser_id INTEGER REFERENCES purchaser(id),
-    product_id INTEGER REFERENCES product(product_id),
-    order_date DATE NOT NULL
-);
-
-初期データ
--- purchaser 
-INSERT INTO purchaser (name, email) VALUES
-('Alice Smith', 'alice.smith@example.com'),
-('Bob Johnson', 'bob.johnson@example.com'),
-('Charlie Brown', 'charlie.brown@example.com');
-
--- product 
-INSERT INTO product (price) VALUES
-(19.99),
-(29.99),
-(39.99);
-
--- order_info 
-INSERT INTO order_info (purchaser_id, product_id, order_date) VALUES
-(1, 1, '2024-09-01'),
-(1, 2, '2024-09-02'),
-(2, 3, '2024-09-03'),
-(3, 1, '2024-09-04'),
-(3, 2, '2024-09-05');
-
-
-
-
-
-
+Table "public.purchaser"
+ Column |       Type        | Collation | Nullable | Default 
+--------+-------------------+-----------+----------+---------
+ id     | integer           |           |          | 
+ name   | character varying |           |          | 
 
 
 
