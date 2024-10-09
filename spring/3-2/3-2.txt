@@ -28,10 +28,13 @@ Model
 
 
 
-⑥「contoroller」「dao」「serviceimpl」「daoimpl」「sevice」「view」「Entity」「form」「DB」の語句のwebサイトを動かすにあたりどのような動きになるか記載しなさい。（想定は画面からDBの情報を取得し画面に表示する）（同じ用語も複数回使います）
-「view」→「controller」→「sevice」→「controller」→「serviceimpl」→「dao」
-→「daoimpl」→「DB」→「Entity」→「DB」→「Entity」→「daoimpl」
-→「controller」→「dao」→「serviceimpl」→「controller」→「sevice」→「controller」→「view」
+⑥「contoroller」「dao」「serviceimpl」「daoimpl」「sevice」「view」「Entity」「form」「DB」の語句のwebサイトを動かすにあたりどのような動きになるか記載しなさい。
+（想定は画面からDBの情報を取得し画面に表示する）（同じ用語も複数回使います）
+
+「view」→「controller」→「service」→「controller」→「service」→「dao」
+→「dao」→「Entity」→「DB」→「Entity」→「daoImpl」
+→「serviceImpl」→「service」→「controller」→「model」→「controller」
+→「view」
 
 
 
