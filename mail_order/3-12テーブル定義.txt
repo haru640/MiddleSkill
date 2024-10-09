@@ -1,209 +1,25 @@
 ⚫️課題3-12
 テーブル定義
 
-
-CREATE TABLE purchaser (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL
-);
-
-CREATE TABLE product (
-    product_id SERIAL PRIMARY KEY,
-    price DECIMAL(10, 2) NOT NULL
-);
-
-CREATE TABLE order_info (
-    order_id SERIAL PRIMARY KEY,
-    purchaser_id INTEGER REFERENCES purchaser(id),
-    product_id INTEGER REFERENCES product(product_id),
-    order_date DATE NOT NULL
-);
-
-初期データ
--- purchaser 
-INSERT INTO purchaser (name, email) VALUES
-('Alice Smith', 'alice.smith@example.com'),
-('Bob Johnson', 'bob.johnson@example.com'),
-('Charlie Brown', 'charlie.brown@example.com');
-
--- product 
-INSERT INTO product (price) VALUES
-(19.99),
-(29.99),
-(39.99);
-
--- order_info 
-INSERT INTO order_info (purchaser_id, product_id, order_date) VALUES
-(1, 1, '2024-09-01'),
-(1, 2, '2024-09-02'),
-(2, 3, '2024-09-03'),
-(3, 1, '2024-09-04'),
-(3, 2, '2024-09-05');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-好きなものを作ってもらって大丈夫です！！！
-
-
-完成動画(例)
-https://drive.google.com/file/d/1btpVBhABqDxoSiHQ034wF8Qfx8xowLEx/view?usp=drive_link
-
-
-テーブル設計 (例)
-https://docs.google.com/spreadsheets/d/18be2ke47u--xAcUQI0fcWyQNNlIQFcMuXBtQGbFP0Cg/edit#gid=0
-
-
-※下記の条件を取り入れSpringのアプリ開発を行なってください。
-通販アプリケーション
-
-データベース名：mail_order_db
-テーブル名　　：
-注文者　　purchaser   
-CREATE TABLE  purchaser (
-	id INTEGER PRIMARY KEY,
-	name VARCHAR(255)　NOT NULL,
-	email VARCHAR(255)　UNIQUE NOT NULL
-);
-        
-
-商品情報 　Product
-CREATE TABLE  Product (
-	product_id INTEGER PRIMARY KEY,
-	Price DECIMAL(10, 2) NOT NULL
-);
-		
-配達日　　delivery
-CREATE TABLE delivery (
-	delivery_date DATE NOT NULL,
-	tracking_number　VARCHAR(100)
-);
-	
-
-
-
-1.テーブルを3つ以上作り、それを利用したSpringアプリケーションを作成してください。
-
-
-
-2.CRUD機能を取り入れてください
-
-
-3.バリデーションをかけること（メッセージ表示）（１箇所で可）
-
-
-4.Mapをどこかで利用すること（１箇所で可）
-
-
-5.多次元配列をどこかで利用すること（１箇所で可）
-
-
-6.if文をどこかで利用すること（１箇所で可）
-
-
-7.for文をどこかで利用すること（１箇所で可）
-
-
-8.SimpleDateFormatをどこかで利用すること（１箇所で可）
-
-
-9.画面から操作しエラーが発生した場合に例外処理でログが吐き出される仕様にすること（１箇所で可）
-
-
-※また、完成後は動画の格納をお願いいたします！！
-
-
-【詰まる人が多いため参考に】
-①3-12課題説明動画以前撮ったため欲しい方は言ってください！
-②恐らく途中でも良いので提出してフィードバックをもらった方が良いかと思います！！
-
-
-http://localhost:8080/order/list
-http://localhost:8080/order_info/list
+Table "public.order_info"
+    Column     |          Type          | Collation | Nullable |                Default                 
+---------------+------------------------+-----------+----------+----------------------------------------
+ id            | integer                |           | not null | nextval('order_info_id_seq'::regclass)
+ name          | character varying(255) |           |          | 
+ delivery_date | character varying      |           |          | 
+ address       | character varying(255) |           |          | 
+ order_id      | integer                |           |          | 
+Indexes:
+    "order_info_pkey" PRIMARY KEY, btree (id)
+
+Table "public.product"
+ Column |       Type        | Collation | Nullable | Default 
+--------+-------------------+-----------+----------+---------
+ id     | integer           |           |          | 
+ name   | charac
+
+Table "public.purchaser"
+ Column |       Type        | Collation | Nullable | Default 
+--------+-------------------+-----------+----------+---------
+ id     | integer           |           |          | 
+ name   | character varying |           |          | 
