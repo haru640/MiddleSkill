@@ -1,5 +1,7 @@
 package com.example.mail_order.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -26,6 +28,19 @@ public class OrderInfoController {
     @Autowired
     private OrderInfoService orderInfoService;
 
+    private static final String DATE_FORMAT = "yyyy-MM-dd";
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+
+    // 日付をフォーマットするメソッド
+    public String formatDate(Date date) {
+        return date != null ? dateFormat.format(date) : "";
+    }
+
+    // 日付をパースするメソッド
+    public Date parseDate(String dateString) throws ParseException {
+        return dateFormat.parse(dateString);
+    }
+
     @GetMapping
     public String getOrders(Model model) {
         List<OrderInfoEntity> orders = orderInfoService.getAllOrders();
@@ -34,7 +49,7 @@ public class OrderInfoController {
     }
     
     @GetMapping("/order/form")
-    public String showOrderForm(Model model, @RequestParam(required = false) Integer id) { // 変更
+    public String showOrderForm(Model model, @RequestParam(required = false) Integer id) {
         OrderInfoEntity order = (id != null) ? orderInfoService.getOrderById(id) : new OrderInfoEntity();
         model.addAttribute("order", order);
         return "order_form";
@@ -54,9 +69,6 @@ public class OrderInfoController {
             return "order_form"; 
         }
         orderInfoService.saveOrder(order);
-        // ログ出力
-        System.out.println("Order saved: " + order); 
-
         return "redirect:/orders";
     }
 
@@ -64,25 +76,23 @@ public class OrderInfoController {
     public String editOrderForm(@PathVariable Integer id, Model model) {
         OrderInfoEntity order = orderInfoService.getOrderById(id);
         if (order == null) {
-            // 注文が見つからない場合の処理
             return "redirect:/orders";
         }
         model.addAttribute("order", order);
-        return "order_form"; 
+        return "order_edit"; 
     }
-  
+
     @PostMapping("/edit/{id}")
     public String updateOrder(@PathVariable Integer id, @Valid @ModelAttribute("order") OrderInfoEntity order, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            System.out.println("Errors: " + bindingResult.getAllErrors());
             model.addAttribute("currentDate", new Date());
-            return "order_form"; 
+            return "order_edit"; 
         }
-        order.setId(id); // 更新する注文のIDをセット
-        orderInfoService.saveOrder(order); // 注文を保存
-        return "redirect:/orders"; // 注文リストにリダイレクト
+        order.setId(id);
+        orderInfoService.saveOrder(order);
+        return "redirect:/orders"; 
     }
-
-   
 
     @GetMapping("/delete/{id}")
     public String deleteOrder(@PathVariable Integer id) {

@@ -46,6 +46,11 @@
             cursor: pointer;
             width: 100%;
         }
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
 
         button:hover {
             background-color: #45a049;
@@ -54,8 +59,10 @@
 </head>
 <body>
     <h1>注文編集</h1>
-    <form th:action="@{/orders/edit/{id}(id=${order.id})}" method="post" th:object="${order}">
-        <label for="name">名前:</label>
+    <form th:action="@{/orders/edit/{id}(id=${order.id})}" method="post" th:object="${order}"novalidate>
+	<div th:if="${#fields.hasErrors('name')}" class="error" th:errors="*{name}"></div>
+
+        <label for="name">名前<span style="color: red;"> *</span>:</label>
         <input type="text" id="name" name="name" th:value="${order.name}" required>
 
         <label for="orderId">注文ID:</label>
@@ -68,7 +75,6 @@
         <input type="text" id="address" name="address" th:value="${order.address}" required>
 
         <button type="submit">更新</button>
-        <input type="submit" value="更新" />
     </form>
 </body>
 </html>

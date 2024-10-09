@@ -15,6 +15,6 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String handleAllExceptions(Exception ex) {
         logger.error("エラーが発生しました: ", ex);
-        return "error"; // エラーページのテンプレート名
+        return "error"; 
     }
 }
