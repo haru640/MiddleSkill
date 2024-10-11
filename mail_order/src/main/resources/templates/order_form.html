@@ -73,14 +73,33 @@
         .btn-cancel:hover {
             background-color: #d32f2f; /* キャンセルボタンのホバー時の背景色 */
         }
+         .message {
+            text-align: center;
+            font-size: 1.5em;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
+    <div class="message">
+        <script>
+            const message = [
+                ['よ', 'う', 'こ', 'そ'],
+                [' ', 'y', 'a', 'm', 'a', 'z', 'o', 'n'],
+                [' ', 'へ']
+            ];
+
+            message.forEach(row => {
+                document.write(row.join(''));
+                document.write('<br>');
+            });
+        </script>
+    </div>
     <h1>新規注文</h1>
     <form th:action="@{/orders}" th:object="${order}" method="post" novalidate>
         <div th:if="${#fields.hasErrors('name')}" class="error" th:errors="*{name}"></div>
         <div th:if="${#fields.hasErrors('deliveryDate')}" class="error" th:errors="*{deliveryDate}"></div>
-
         <div>
             <label for="name">名前<span style="color: red;"> *</span>:</label>
             <input type="text" id="name" th:field="*{name}" required />
