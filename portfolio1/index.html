@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>My Work</title>
+</head>
+<body>
+    <header>
+        <h1>My Work</h1>
+        <nav aria-label="Main Navigation">
+            <a href="#about">About</a>
+            <a href="#works">Works</a>
+            <a href="#news">News</a>
+            <a href="#contact">Contact</a>
+            <img src="img/image17.png" alt="Additional Image" width="20" height="20">
+        </nav>
+        <div class="slider">
+            <div class="slider-images">
+                <img src="img/image10.jpg" alt="Header Image 1">
+                <img src="img/image19.jpg" alt="Header Image 2">
+                <img src="img/images20.jpg" alt="Header Image 3">
+            </div>
+            <div class="image-indicators">
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+            </div>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2>About</h2>
+        <div class="address">住所情報</div>
+        <div class="profile">プロフィール情報</div>
+    </section>
+
+    <section id="works">
+        <h2>Works</h2>
+        <div class="works-images">
+            <img src="img/image4.jpg" alt="Work 1" class="work-image">
+            <img src="img/image14.jpg" alt="Work 2" class="work-image">
+            <img src="img/image13.jpg" alt="Work 3" class="work-image">
+            <img src="img/image2.jpg" alt="Work 4" class="work-image">
+            <img src="img/image6.jpg" alt="Work 5" class="work-image">
+            <img src="img/image16.jpg" alt="Work 6" class="work-image">
+        </div>
+    </section>
+
+    <section id="news">
+        <h2>News</h2>
+        <ul>
+            <li><span class="date">2024-04-04</span> ニュースタイトル1</li>
+            <li><span class="date">2024-05-04</span> ニュースタイトル2</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <form>
+            <div class="form-group">
+                <label for="name">名前:</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="email">メール:</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="message">メッセージ:</label>
+                <textarea id="message" name="message"></textarea>
+            </div>
+            <input type="submit" value="送信" class="submit-button">
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2020 My Work</p>
+    </footer>
+
+    <div class="overlay" id="overlay">
+        <img class="overlay-image" id="overlayImage" src="" alt="拡大画像">
+    </div>
+
+    <script src="js/Test.js"></script>
+</body>
+</html>
